@@ -1,4 +1,6 @@
 import {synthInit, synthHandleInput, synthUpdateVol} from './synth.js';
+import {drawPiano , pianoHandleInput} from './piano.js';
+
 
 const startButton = document.querySelector('button');
 const volumeSlider = document.querySelector('input');
@@ -8,6 +10,8 @@ startButton.addEventListener('click', synthInit)
 volumeSlider.addEventListener('input', () => {
     synthUpdateVol(volumeSlider.value/volumeSlider.max);
 })
+
+drawPiano();
 
 // Check for MIDI Access
 if (navigator.requestMIDIAccess) {
@@ -38,4 +42,5 @@ function updateDevices (event) {
 
 function handleInput(input) {
     synthHandleInput(input);
+    pianoHandleInput(input);
 }

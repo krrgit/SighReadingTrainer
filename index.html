@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainer</title>
+    <title>Midi Synth</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         @font-face { font-family: LelandText; src: url('LelandText.otf'); } 
     </style>
 </head>
 <body>
-    <button>Start CTX</button>
-    <h3 style="font-family:LelandText;">Volume</h3>
-    <div >
-        <input type="range" min="0" max="100" value="100" class="slider" id="volSlider">
+    <h1>Simple Midi Synth</h1>
+    <div class="UI">
+        <div class="btnContainer">
+            <button class="button">Start</button>
+        </div>
+        <div class="volume">
+            <div class="volumeLabel">Volume</div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="100" class="slider" id="volSlider">
+            </div>
+        </div>
+    </div>
+    <div id="piano">
+        <div class="keywc"></div><div class="keybl"></div><div class="keyw"></div>
     </div>
     <script type="module" src="./app.js"></script>
 </body>

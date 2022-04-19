@@ -1,10 +1,12 @@
+// Handles all the code for creating the synth sounds
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 let ctx;
 let volume = 1;
 const oscillators = {};
 
-
+// Other Functions
 function synthInit() {
     ctx = new AudioContext();
     console.log(ctx);
@@ -31,7 +33,7 @@ function calcGain(velocity, volume) {
     return clamp(0.33 * volume * (velocity / 127), 0.0001, 1);
 }
 
-// Core functions
+// Synth functions
 function synthHandleInput(input) {
     const command = input.data[0];
     const note = input.data[1];
@@ -65,7 +67,6 @@ function noteOn (note, velocity) {
     osc.frequency.value = miditoFreq(note);
     
     osc.connect(oscGain);
-    // oscGain.connect(velocityGain);
     oscGain.connect(ctx.destination);
 
     osc.gain = oscGain;
@@ -77,7 +78,6 @@ function noteOn (note, velocity) {
 
 function noteOff(note) {
     const osc = oscillators[note.toString()].osc;
-    console.log(oscillators[note.toString()]);
     const oscGain = osc.gain;
 
     oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime);
